@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/themes/dark/theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/Main.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/UI/Dialogs/OpenSprite.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/UI/Dialogs/ManageLayouts.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/UI/Dialogs/TileModeOffsetsDialog.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/FixedZoom.gd" type="Script" id=15]
 [ext_resource path="res://src/UI/Dialogs/SplashDialog.tscn" type="PackedScene" id=27]
 [ext_resource path="res://src/UI/Dialogs/CreateNewImage.tscn" type="PackedScene" id=28]
 [ext_resource path="res://src/Preferences/PreferencesDialog.tscn" type="PackedScene" id=32]
@@ -29,6 +30,11 @@ __meta__ = {
 "_edit_horizontal_guides_": [  ],
 "_edit_vertical_guides_": [  ]
 }
+
+[node name="FixedZoom" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 15 )
 
 [node name="MenuAndUI" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -64,6 +70,7 @@ __meta__ = {
 [node name="CreateNewImage" parent="Dialogs" instance=ExtResource( 28 )]
 
 [node name="OpenSprite" parent="Dialogs" instance=ExtResource( 12 )]
+rect_min_size = Vector2( 150, 52.5 )
 window_title = "Open File(s)"
 mode = 1
 
@@ -72,8 +79,10 @@ margin_left = 108.0
 margin_top = 40.0
 margin_right = 623.0
 margin_bottom = 388.0
+rect_min_size = Vector2( 150, 52.5 )
 
 [node name="SaveSpriteHTML5" parent="Dialogs" instance=ExtResource( 8 )]
+rect_min_size = Vector2( 150, 52.5 )
 
 [node name="ExportDialog" parent="Dialogs" instance=ExtResource( 39 )]
 
@@ -86,18 +95,21 @@ margin_bottom = 388.0
 [node name="UnsavedCanvasDialog" type="ConfirmationDialog" parent="Dialogs"]
 margin_right = 467.0
 margin_bottom = 70.0
+rect_min_size = Vector2( 150, 52.5 )
 window_title = "Unsaved Image"
 dialog_text = "You have unsaved changes. If you proceed, the progress you have made will be lost."
 
 [node name="QuitDialog" type="ConfirmationDialog" parent="Dialogs"]
 margin_right = 243.0
 margin_bottom = 70.0
+rect_min_size = Vector2( 150, 52.5 )
 resizable = true
 dialog_text = "Are you sure you want to exit Pixelorama?"
 
 [node name="QuitAndSaveDialog" type="ConfirmationDialog" parent="Dialogs"]
 margin_right = 330.0
 margin_bottom = 70.0
+rect_min_size = Vector2( 150, 52.5 )
 window_title = "Save before exiting?"
 resizable = true
 dialog_text = "You have unsaved progress. How do you wish to proceed?"
@@ -114,6 +126,7 @@ dialog_text = "This is an error message!"
 [node name="BackupConfirmation" type="ConfirmationDialog" parent="Dialogs"]
 margin_right = 200.0
 margin_bottom = 88.0
+rect_min_size = Vector2( 150, 52.5 )
 popup_exclusive = true
 resizable = true
 dialog_text = "Autosaved project(s) from a crashed session were found.
@@ -121,6 +134,7 @@ Do you want to recover the data?"
 dialog_autowrap = true
 
 [node name="FrameProperties" parent="Dialogs" instance=ExtResource( 9 )]
+rect_min_size = Vector2( 150, 52.5 )
 
 [node name="WindowOpacityDialog" parent="Dialogs" instance=ExtResource( 10 )]
 
@@ -155,5 +169,5 @@ visible = false
 [connection signal="custom_action" from="Dialogs/QuitAndSaveDialog" to="." method="_on_QuitAndSaveDialog_custom_action"]
 [connection signal="popup_hide" from="Dialogs/QuitAndSaveDialog" to="." method="_can_draw_true"]
 [connection signal="popup_hide" from="Dialogs/ErrorDialog" to="." method="_can_draw_true"]
-[connection signal="popup_hide" from="Dialogs/BackupConfirmation" to="." method="_can_draw_true"]
 [connection signal="popup_hide" from="Dialogs/BackupConfirmation" to="." method="_on_BackupConfirmation_popup_hide"]
+[connection signal="popup_hide" from="Dialogs/BackupConfirmation" to="." method="_can_draw_true"]

@@ -13,7 +13,6 @@ var mouse_pos := Vector2.ZERO
 var drag := false
 var index := 0
 
-
 func _ready() -> void:
 	rotating = true
 	viewport_container = get_parent().get_parent()
@@ -205,6 +204,7 @@ func zoom_camera_percent(value: float) -> void:
 	else:
 		zoom = new_zoom
 		zoom_changed()
+	print(value)
 
 
 func zoom_changed() -> void:
